@@ -1,0 +1,7 @@
+🧵 1/4: Digging into @blessnetwork (bless.network). First impression? A textbook case of "vaporware" red flags. The entire token section is empty—no supply, no utility, no distribution. They claim "world's first" and "5M+ nodes" but provide zero proof or third-party validation. 🚩
+
+🧵 2/4: The technical & economic model is fundamentally broken. Rewards are based *solely* on uptime, which incentivizes idle connections and sybil attacks, not actual compute contribution. No specs on bandwidth consumption, no details on secure isolation of idle CPU/GPU (a massive security risk), and no tokenomics to evaluate inflation or vesting. 🚩
+
+🧵 3/4: The "decentralized" claim collapses under scrutiny. They rely on a *central dashboard* for roll calls and task assignment—that's not trustless. No open-source code, no governance structure, and a referral/achievement system that screams MLM. Plus, selling "behavioral data" raises severe privacy alarms, especially with vague "opt-in" claims. 🚩
+
+🧵 4/4: The verdict? This is a high-risk, low-trust project. It's a copycat of Golem/iExec but with less substance and more marketing fluff. No audits, no bug bounty, no roadmap, no team background. If you value your capital, wait for actual code, audits, and token details. DYOR. #DePIN #Crypto #Web3

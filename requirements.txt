@@ -1,0 +1,9 @@
+langgraph
+langchain
+langchain-openai
+pydantic
+httpx
+beautifulsoup4
+python-dotenv
+pgvector
+psycopg2-binary

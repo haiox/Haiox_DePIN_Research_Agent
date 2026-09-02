@@ -1,0 +1,15 @@
+Here is the English thread in an alpha-caller style for Twitter:
+
+==================================================
+
+🧵 1/5: Grass is asking you to donate idle bandwidth for "points" that may become tokens. But here’s the catch: no total supply, no emission schedule, no vesting, no burns. You’re mining blind. In DePIN, transparency isn’t optional—it’s the whole point.
+
+🧵 2/5: Rewards are calculated from Network Points + Uptime Points + bandwidth usage + geographic location. But payout rates, minimum thresholds, and frequency? Undisclosed. A central entity decides who gets what. That’s not a permissionless network—it’s a black-box points farm.
+
+🧵 3/5: No bandwidth caps. No hardware requirements. No named auditors. No security reports. "Recognized by leading antivirus providers"—which ones? Privacy claims with zero verifiable technical details. If you can’t audit it, you don’t control it.
+
+🧵 4/5: Referral bonuses. Android 3x points. Pyramid-style incentive loops. When tokenomics are hidden, the only real yield is new users. Ask yourself: are you earning rewards, or are you the product being sold to "verified institutions" we never see?
+
+🧵 5/5: Verified: Grass token utility and points-based allocation are real. Also verified: no supply, no caps, no hardware specs, no transparency. It’s on Solana—but the page won’t tell you that. Hard pass until they open the books. DYOR. Not financial advice.
+
+==================================================

@@ -1,0 +1,7 @@
+🧵 1/4: Teneo Protocol is positioning itself as the "Airbnb for data" — a DePIN play where users run a Chrome extension (Beacon) to harvest public social data for AI agents. But beneath the slick dashboard and animated counters lies a high-risk, pre-token points farm. Here's my breakdown. 🧵👇
+
+🧵 2/4: Tokenomics red flag is loud & clear. The reward token, "Fragments," has NO ticker, NO supply schedule, NO vesting, and NO declared blockchain. Rewards are purely points-based (Teneo Points), while demand-side miners pay in USDC. This creates a massive value-capture imbalance for node operators. You're mining an IOU.
+
+🧵 3/4: Risk assessment: HIGH. Technical docs are non-existent — no hardware requirements, no data validation methodology, no x402 payment rail specs. Metrics like "300K+ builders" and "millions of nodes" are obfuscated with animated counters, making them cryptographically unverifiable. Privacy claims ("Your device. Your data.") are not backed by auditable code.
+
+🧵 4/4: The bottom line: Teneo is a centralized gateway (curated marketplace + closed-source node software) masquerading as a decentralized protocol. A few agents dominate demand (Nansen has only 31 jobs), while sybil farming is incentivized. Until they publish a token contract, node specs, and verifiable on-chain metrics, treat this as a high-risk, speculative points game. DYOR. 🧵🔥
