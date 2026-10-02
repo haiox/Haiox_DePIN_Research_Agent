@@ -1,10 +1,12 @@
-# AGInaz DePIN Research Agent
+# Haiox DePIN Research Agent
+
+Previously published as **AGInaz DePIN Research Agent**; older GitHub links redirect here.
 
 > An evidence-first, multi-agent research pipeline for investigating DePIN projects and producing reusable research deliverables.
 
 ## Architecture Understanding
 
-- This is the third project in the AGInaz portfolio; it is separate from AGInaz Smart Miner.
+- This is the third project in the Haiox portfolio; it is separate from Haiox Smart Miner.
 - A project website URL is the workflow input.
 - The local Smart Miner adapter acquires and cleans live page content, then uses a low-cost LLM to prepare the evidence text.
 - Evidence is persisted in PostgreSQL before specialist analysis begins.
@@ -15,11 +17,11 @@
 
 ## 1. Project Overview
 
-AGInaz DePIN Research Agent is a Python and LangGraph research system that turns a live DePIN project website into evidence-backed analysis and portfolio-ready content.
+Haiox DePIN Research Agent is a Python and LangGraph research system that turns a live DePIN project website into evidence-backed analysis and portfolio-ready content.
 
 The project addresses a practical research problem: DePIN websites often combine technical claims, reward mechanics, token information, and marketing language in unstructured pages. The pipeline captures the source material, stores it as evidence, runs focused analytical agents, checks selected claims against that evidence, and produces reusable deliverables.
 
-This repository is the **DePIN intelligence and content-generation project**. It is not the standalone AGInaz Smart Miner project. Its `tools/smart_miner_adapter.py` module provides the acquisition boundary used by this workflow.
+This repository is the **DePIN intelligence and content-generation project**. It is not the standalone Haiox Smart Miner project. Its `tools/smart_miner_adapter.py` module provides the acquisition boundary used by this workflow.
 
 The repository is positioned as a portfolio and freelance-research system. Its concrete deliverables are:
 
@@ -335,11 +337,11 @@ The repository includes paired Markdown and X/Twitter outputs in `output_threads
 
 ## Portfolio Context
 
-AGInaz DePIN Research Agent is the third project in a three-project AGInaz portfolio:
+Haiox DePIN Research Agent is the third project in a three-project Haiox portfolio:
 
 1. Telegram bot project;
-2. AGInaz Smart Miner; and
-3. AGInaz DePIN Research Agent.
+2. Haiox Smart Miner; and
+3. Haiox DePIN Research Agent.
 
 Smart Miner provides extraction capability. This repository adds evidence persistence, specialist analysis, verification, and the Content Factory required to turn research into client-facing deliverables.
 
