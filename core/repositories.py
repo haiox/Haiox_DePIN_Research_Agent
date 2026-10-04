@@ -1,5 +1,6 @@
 import json
 import os
+from contextlib import closing
 
 import psycopg2
 from dotenv import load_dotenv
@@ -17,7 +18,7 @@ def get_connection():
 def save_evidence(project_id: int | None, source_url: str, raw_content: str) -> int | None:
     """Store page text and associate it with an existing or newly created project."""
     try:
-        with get_connection() as conn:
+        with closing(get_connection()) as conn, conn:
             with conn.cursor() as cursor:
                 if project_id is None:
                     cursor.execute(
@@ -45,7 +46,7 @@ def save_evidence(project_id: int | None, source_url: str, raw_content: str) -> 
 
 def get_evidence_by_id(evidence_id: int) -> dict | None:
     try:
-        with get_connection() as conn:
+        with closing(get_connection()) as conn, conn:
             with conn.cursor() as cursor:
                 cursor.execute(
                     "SELECT id, project_id, source_url, content FROM evidence WHERE id = %s",
@@ -62,7 +63,7 @@ def get_evidence_by_id(evidence_id: int) -> dict | None:
 
 def save_research_report(evidence_id: int, tokenomics: dict, risk: dict, verification: dict) -> int | None:
     try:
-        with get_connection() as conn:
+        with closing(get_connection()) as conn, conn:
             with conn.cursor() as cursor:
                 cursor.execute(
                     """INSERT INTO research_reports
