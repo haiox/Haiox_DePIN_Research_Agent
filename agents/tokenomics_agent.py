@@ -30,9 +30,10 @@ async def tokenomics_node(state: AgentState):
         # Remove any Markdown formatting from the model output
         cleaned_response = response_text.replace("```json", "").replace("```", "").strip()
         findings = json.loads(cleaned_response)
+        if not isinstance(findings, dict) or not findings:
+            raise ValueError("Tokenomics response must be a nonempty JSON object")
     except Exception as e:
-        print(f"❌ [Tokenomics Agent] LLM parsing failed: {e}")
-        findings = {"error": f"Failed to parse tokenomics data: {str(e)}"}
+        return {"errors": state.get("errors", []) + [f"Tokenomics failed: {e}"], "current_step": "failed"}
 
     current_findings = state.get("structured_findings") or {}
     current_findings["tokenomics"] = findings

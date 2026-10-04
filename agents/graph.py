@@ -24,7 +24,7 @@ async def extract_and_evidence_node(state: AgentState):
         errors.append("Extraction failed from Smart Miner.")
         return {"errors": errors, "current_step": "failed"}
 
-    p_id = state.get("project_id") or 1 
+    p_id = state.get("project_id")
     ev_id = save_evidence(p_id, state["target_url"], raw_data)
 
     if not ev_id:
@@ -51,17 +51,25 @@ workflow.add_node("verification", verification_node)
 workflow.add_node("persist_research", persist_research_node)
 
 workflow.set_entry_point("extract_evidence")
-workflow.add_edge("extract_evidence", "tokenomics")
-workflow.add_edge("tokenomics", "risk")
-workflow.add_edge("risk", "verification")
-workflow.add_edge("verification", "persist_research")
-workflow.add_edge("persist_research", END)
-# Add the Twitter node
 workflow.add_node("twitter_factory", twitter_factory_node)
 
-# Update the routing for the final stages:
-workflow.add_edge("verification", "persist_research")
-workflow.add_edge("persist_research", "twitter_factory") # Proceed to Twitter after the database step
-workflow.add_edge("twitter_factory", END) # Then finish
+def route_to(destination: str):
+    def route(state: AgentState):
+        return END if state.get("errors") or state.get("current_step") == "failed" else destination
+    return route
+
+for source, destination in (
+    ("extract_evidence", "tokenomics"),
+    ("tokenomics", "risk"),
+    ("risk", "verification"),
+    ("verification", "persist_research"),
+    ("persist_research", "twitter_factory"),
+):
+    workflow.add_conditional_edges(
+        source,
+        route_to(destination),
+        {destination: destination, END: END},
+    )
+workflow.add_edge("twitter_factory", END)
 
 app = workflow.compile()

@@ -2,7 +2,8 @@ import logging
 import asyncio
 import json
 import sys
-sys.stdout.reconfigure(encoding='utf-8')
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding='utf-8')
 
 # Import the graph
 from agents.graph import app as depin_agent
@@ -11,16 +12,16 @@ from agents.graph import app as depin_agent
 logging.getLogger("httpx").setLevel(logging.WARNING)
 
 async def async_main():
-    print("🚀 Starting AGINAZ DePIN Research Agent (Evidence-Based Architecture)...\n")
+    print("🚀 Starting Haiox DePIN Research Agent...\n")
     print("⚙️ Running LangGraph Workflow...")
     
     # Test URL for the DePIN project
-    target_url = "https://teneo.pro/"
+    target_url = sys.argv[1] if len(sys.argv) > 1 else "https://teneo.pro/"
     
     # Lightweight State structure based on the new architecture
     initial_state = {
         "target_url": target_url,
-        "project_id": 1,
+        "project_id": None,
         "evidence_id": None,
         "structured_findings": None,
         "verification_result": None,
@@ -40,6 +41,7 @@ async def async_main():
         print("❌ Errors occurred during execution:")
         for err in result["errors"]:
             print(f"  - {err}")
+        raise RuntimeError("Research workflow failed")
     else:
         print(f"✅ Workflow completed successfully! Step: {result.get('current_step')}")
         print(f"📌 Generated Evidence ID: {result.get('evidence_id')}")

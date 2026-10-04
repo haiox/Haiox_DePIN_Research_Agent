@@ -6,17 +6,16 @@ async def persist_research_node(state: AgentState):
     
     ev_id = state.get("evidence_id")
     findings = state.get("structured_findings")
-    if findings is None:
-        findings = {}
-        
+    if not findings or not state.get("verification_result"):
+        return {"errors": state.get("errors", []) + ["Missing verified findings for report persistence."], "current_step": "failed"}
+
     tokenomics = findings.get("tokenomics", {})
-    # The rest of the code remains unchanged...
     risk = findings.get("risk", {})
     verification = state.get("verification_result", {})
     
     if ev_id:
         report_id = save_research_report(ev_id, tokenomics, risk, verification)
         if report_id:
-             return {"current_step": "persisted"}
+            return {"current_step": "persisted"}
              
-    return {"errors": state.get("errors", []) + ["Failed to persist research report."]}
+    return {"errors": state.get("errors", []) + ["Failed to persist research report."], "current_step": "failed"}

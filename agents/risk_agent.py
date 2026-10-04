@@ -29,9 +29,10 @@ async def risk_node(state: AgentState):
         response_text = await call_llm(prompt)
         cleaned_response = response_text.replace("```json", "").replace("```", "").strip()
         findings = json.loads(cleaned_response)
+        if not isinstance(findings, dict) or not findings:
+            raise ValueError("Risk response must be a nonempty JSON object")
     except Exception as e:
-        print(f"❌ [Risk Agent] LLM parsing failed: {e}")
-        findings = {"error": f"Failed to parse risk data: {str(e)}"}
+        return {"errors": state.get("errors", []) + [f"Risk analysis failed: {e}"], "current_step": "failed"}
 
     current_findings = state.get("structured_findings") or {}
     current_findings["risk"] = findings
