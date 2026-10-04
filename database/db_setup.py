@@ -1,4 +1,5 @@
 import os
+from contextlib import closing
 
 import psycopg2
 from dotenv import load_dotenv
@@ -10,7 +11,7 @@ def init_db():
     database_url = os.getenv("DATABASE_URL")
     if not database_url:
         raise ValueError("DATABASE_URL is required")
-    with psycopg2.connect(database_url) as conn:
+    with closing(psycopg2.connect(database_url)) as conn, conn:
         with conn.cursor() as cursor:
             cursor.execute("""
                 CREATE TABLE IF NOT EXISTS projects (
