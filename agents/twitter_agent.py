@@ -11,8 +11,8 @@ async def twitter_factory_node(state: AgentState):
     verification = state.get("verification_result", {})
     target_url = state.get("target_url", "Unknown Project")
     
-    if not findings:
-        return {"errors": state.get("errors", []) + ["No findings available to generate content."]}
+    if not findings or not verification:
+        return {"errors": state.get("errors", []) + ["Verified findings are required to generate content."], "current_step": "failed"}
 
     # Optimized system prompt for higher LLM reliability
     prompt = f"""
@@ -21,12 +21,14 @@ async def twitter_factory_node(state: AgentState):
     
     Project: {target_url}
     Data: {json.dumps(findings)}
+    Verification: {json.dumps(verification)}
     
     RULES:
     1. Language: STRICTLY ENGLISH.
     2. Tone: Professional, investigative, Alpha Caller style.
     3. Format: Number each tweet clearly (e.g., 🧵 1/4:, 2/4:).
     4. Output raw tweets ONLY. Do not write introductory sentences.
+    5. Only describe supported claims as facts. Label partial or unsupported claims clearly.
     """
     
     try:
@@ -35,12 +37,12 @@ async def twitter_factory_node(state: AgentState):
         # Fallback mechanism in case of an empty response
         if not thread_content or not thread_content.strip():
             print("⚠️ [Warning] Primary LLM returned empty. Retrying with a simplified prompt...")
-            fallback_prompt = f"Write a short, professional English Twitter thread summarizing this DePIN project: {target_url}. Data: {json.dumps(findings)}"
+            fallback_prompt = f"Write a short English research thread about {target_url}. Data: {json.dumps(findings)}. Verification: {json.dumps(verification)}. Only describe supported claims as facts."
             thread_content = await call_llm(fallback_prompt)
             
             # Final safety check
             if not thread_content or not thread_content.strip():
-                thread_content = "⚠️ Error: The LLM API failed to generate a response after multiple attempts. Please run the script again."
+                raise ValueError("LLM returned empty content twice")
 
         # File generation logic
         project_name_match = re.search(r'https?://(?:www\.)?([^/]+)', target_url)
